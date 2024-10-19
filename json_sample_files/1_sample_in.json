@@ -1,0 +1,72 @@
+{
+    "name": "root",
+    "type": "group",
+    "children": [
+        {
+            "name": "Body1",
+            "type": "body",
+            "shape": "cube",
+            "boundingSphere": 3,
+            "material": "plastic",
+            "color": "red",
+            "transparent": false
+        },
+        {
+            "name": "Body2",
+            "type": "body",
+            "shape": "cylinder",
+            "boundingSphere": 52,
+            "material": "wood",
+            "color": "red",
+            "transparent": false
+        },
+        {
+            "name": "Body3",
+            "type": "body",
+            "shape": "sphere",
+            "boundingSphere": 7,
+            "material": "glass",
+            "color": "yellow",
+            "transparent": true
+        },
+        {
+            "name": "Group2",
+            "type": "group",
+            "children": [
+                {
+                    "name": "Body4",
+                    "type": "body",
+                    "shape": "cube",
+                    "boundingSphere": 11.9,
+                    "material": "plastic",
+                    "color": "green",
+                    "transparent": true
+                },
+                {
+                    "name": "Group3",
+                    "type": "group",
+                    "children": [
+                        {
+                            "name": "Body5",
+                            "type": "body",
+                            "shape": "cylinder",
+                            "boundingSphere": 6.75,
+                            "material": "wood",
+                            "color": "white",
+                            "transparent": false
+                        },
+                        {
+                            "name": "Body232",
+                            "type": "body",
+                            "shape": "cube",
+                            "boundingSphere": 47,
+                            "material": "plastic",
+                            "color": "white",
+                            "transparent": false
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
