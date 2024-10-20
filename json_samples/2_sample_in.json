@@ -1,0 +1,72 @@
+{
+    "name": "root",
+    "type": "group",
+    "children": [
+        {
+            "name": "Body1",
+            "type": "body",
+            "shape": "pyramid",
+            "boundingSphere": 2,
+            "material": "plastic",
+            "color": "blue",
+            "transparent": false
+        },
+        {
+            "name": "Body2",
+            "type": "body",
+            "shape": "cylinder",
+            "boundingSphere": 52,
+            "material": "ceramic",
+            "color": "red",
+            "transparent": false
+        },
+        {
+            "name": "Body3",
+            "type": "body",
+            "shape": "pyramid",
+            "boundingSphere": 7,
+            "material": "glass",
+            "color": "yellow",
+            "transparent": true
+        },
+        {
+            "name": "Group2",
+            "type": "group",
+            "children": [
+                {
+                    "name": "Body4",
+                    "type": "body",
+                    "shape": "sphere",
+                    "boundingSphere": 11.9,
+                    "material": "plastic",
+                    "color": "orange",
+                    "transparent": true
+                },
+                {
+                    "name": "Group3",
+                    "type": "group",
+                    "children": [
+                        {
+                            "name": "Body5",
+                            "type": "body",
+                            "shape": "cone",
+                            "boundingSphere": 6.75,
+                            "material": "glass",
+                            "color": "green",
+                            "transparent": false
+                        },
+                        {
+                            "name": "Body232",
+                            "type": "body",
+                            "shape": "cylinder",
+                            "boundingSphere": 47,
+                            "material": "wood",
+                            "color": "brown",
+                            "transparent": false
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
