@@ -1,9 +1,15 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(regroup-bodies)
+project(MonProjet LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-add_subdirectory(src)
+include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories(${CMAKE_SOURCE_DIR}/lib)
 
-target_include_directories(regroup-bodies PRIVATE lib)
+add_library(regroup STATIC ${CMAKE_SOURCE_DIR}/include/regroup/regroup.cpp)
+
+add_executable(regroup-bodies.out ${CMAKE_SOURCE_DIR}/src/main.cpp)
+
+target_link_libraries(regroup-bodies.out PRIVATE regroup)
