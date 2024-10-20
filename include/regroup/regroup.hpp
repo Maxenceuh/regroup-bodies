@@ -21,7 +21,7 @@ public:
     Regroup();
     ~Regroup();
 
-    void regroup_by_criteria();
+    std::string regroup_by_criteria();
 
     void set_json_files_paths(std::vector<std::string> json_paths);
     std::vector<std::string> get_json_files_paths();

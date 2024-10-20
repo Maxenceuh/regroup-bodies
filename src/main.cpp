@@ -9,7 +9,7 @@ int main()
 
     to_group.set_json_files_paths(
         {"../json_samples/1_sample_in.json",
-         "../json_samples/2_sample_in.json"});
+         /* "../json_samples/2_sample_in.json" */});
 
     to_group.set_criterias({"shape", "material"});
     to_group.regroup_by_criteria();
