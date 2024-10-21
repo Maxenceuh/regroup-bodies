@@ -37,12 +37,13 @@ std::string Regroup::regroup_by_criteria()
     {
         return ret;
     }
-    
-    // Store grouped groups
-    std::map<std::string, std::vector<ordered_json>> grouped_bodies;
 
-    for (const auto &input_json : this->files)
+    std::map<std::string, std::vector<ordered_json>> grouped_bodies; // Store grouped groups
+
+    std::size_t file_number = 0; // Keep track at which file is being computed
+    for (const auto &json_file : this->files)
     {
+
         std::function<void(const ordered_json &)> process_children = [&](const ordered_json &node)
         {
             if (node.contains("children"))
@@ -74,40 +75,49 @@ std::string Regroup::regroup_by_criteria()
             }
         };
 
-        process_children(input_json);
+        process_children(json_file);
+
+        ordered_json result;
+        result["name"] = "root";
+        result["type"] = "group";
+
+        for (const auto &group : grouped_bodies)
+        {
+            ordered_json group_node;
+            group_node["name"] = "group " + group.first;
+            group_node["type"] = "group";
+            group_node["children"] = group.second;
+
+            result["children"].push_back(group_node);
+        }
+
+        // Create an 'out version' of the file
+        std::string new_filename = this->input_files_paths.at(file_number).filename().string(); // Get the filename of the current file being computed
+        size_t pos = new_filename.find("in");
+        if (pos != std::string::npos) {
+            new_filename.replace(pos, 2, "out");
+        }
+
+        std::ofstream out_file(this->input_files_paths.at(file_number).parent_path().string() + "/" + new_filename);
+        if (!out_file.is_open())
+        {
+            return "Error : cannot open file.";
+        }
+        out_file << result.dump(4);
+        out_file.close();
+
+        file_number++; // Increment, go through another json file
     }
 
-    ordered_json result;
-    result["name"] = "root";
-    result["type"] = "group";
-
-    for (const auto &group : grouped_bodies)
-    {
-        ordered_json group_node;
-        group_node["name"] = "group " + group.first;
-        group_node["type"] = "group";
-        group_node["children"] = group.second;
-
-        result["children"].push_back(group_node);
-    }
-
-    std::ofstream out_file("out.json");
-    if (!out_file.is_open())
-    {
-        return "Error : cannot open file.";
-    }
-    out_file << result.dump(4);
-    out_file.close();
-
-    return "regrouping complete, output written to out.json";
+    return "Regrouping complete, output written to output file";
 }
 
-void Regroup::set_json_files_paths(std::vector<std::string> json_paths)
+void Regroup::set_json_files_paths(std::vector<std::filesystem::path> json_paths)
 {
     this->input_files_paths = json_paths;
 }
 
-std::vector<std::string> Regroup::get_json_files_paths()
+std::vector<std::filesystem::path> Regroup::get_json_files_paths()
 {
     return this->input_files_paths;
 }
