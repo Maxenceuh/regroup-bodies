@@ -38,6 +38,7 @@ Go to build directory and run make:
 
 Linux (recommended):
 ```
+mkdir build
 cd build
 cmake ..
 make
@@ -46,6 +47,7 @@ make
 
 MinGW
 ```
+mkdir build
 cd build
 cmake .. -G "MinGW Makefiles"
 mingw32-make
