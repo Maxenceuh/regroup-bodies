@@ -5,13 +5,13 @@
 #include <string>
 #include <json.hpp>
 
-using json = nlohmann::json;
+using ordered_json = nlohmann::ordered_json;
 
 class Regroup
 {
 private:
     std::vector<std::string> input_files_paths;
-    std::vector<json> files;
+    std::vector<ordered_json> files;
     std::vector<std::string> criterias;
 private: 
     std::string parse_json_files();
@@ -29,7 +29,7 @@ public:
     void set_criterias(std::vector<std::string> criterias);
     std::vector<std::string> get_criterias();
 
-    std::vector<json> get_json_files();
+    std::vector<ordered_json> get_json_files();
 };
 
 #endif // REGROUP_HPP
