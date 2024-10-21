@@ -2,8 +2,9 @@
 
 #include <iostream>
 #include <fstream>
+#include <stdexcept>
 
-std::string Regroup::parse_json_files()
+u_int8_t Regroup::parse_json_files()
 {
     for (auto &&json_file_path : this->input_files_paths)
     {
@@ -16,10 +17,12 @@ std::string Regroup::parse_json_files()
         }
         catch (const std::exception &e)
         {
-            return e.what();
+            std::cout << "Error parsing file(s), please check JSON file(s) paths:" << "\n";
+            std::cout << e.what() << "\n";
+            throw e;
         }
     }
-    return "parse complete";
+    return 0;
 }
 
 Regroup::Regroup(std::vector<std::string> input_files_paths)
@@ -32,10 +35,10 @@ Regroup::Regroup()
 
 std::string Regroup::regroup_by_criteria()
 {
-    std::string ret = this->parse_json_files();
-    if (ret != "parse complete")
+    char ret = this->parse_json_files();
+    if (ret != 0)
     {
-        return ret;
+        return "parse failed";
     }
 
     std::map<std::string, std::vector<ordered_json>> grouped_bodies; // Store grouped groups

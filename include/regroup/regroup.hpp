@@ -17,7 +17,7 @@ private:
 private: 
     /// @brief Open, read and deserialize json file(s).
     /// @return 
-    std::string parse_json_files();
+    u_int8_t parse_json_files();
     
 public:
     Regroup(std::vector<std::string> input_files_paths);
@@ -29,11 +29,11 @@ public:
     std::string regroup_by_criteria();
 
     /// @brief Set the path(s) of the file(s) for regrouping.
-    /// @param json_paths path/to/the/json/file.json
+    /// @param json_paths takes a single or a list of paths `path/to/the/json/file.json`
     void set_json_files_paths(std::vector<std::filesystem::path> json_paths);
 
-    /// @brief Get path(s) of the JSON file(s) set by the ```set_json_files_paths()``` method.
-    /// @return A standard container to access set paths by the ```set_json_files_paths()``` method.
+    /// @brief Get path(s) of the JSON file(s) set by the `set_json_files_paths()` method.
+    /// @return A standard container to access set paths by the `set_json_files_paths()` method.
     std::vector<std::filesystem::path> get_json_files_paths();
 
     /// @brief Set criterias to group bodies inside the JSON file.

@@ -14,11 +14,10 @@ int main()
     to_group.set_criterias({"shape", "material"});
     to_group.regroup_by_criteria();
 
-    /* std::vector<std::filesystem::path> files = to_group.get_json_files_paths();
+    std::vector<std::filesystem::path> files = to_group.get_json_files_paths();
     for (auto &&file : files)
     {
         std::cout << file << "\n";
-        std::cout << "==================\n";
     }
-    std::cout << std::endl; */
+    std::cout << std::endl;
 }
